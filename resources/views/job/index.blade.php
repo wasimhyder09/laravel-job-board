@@ -1,18 +1,18 @@
 <x-layout>
   <x-breadcrumbs :links="['Jobs' => route('jobs.index')]" class="mb-4"/>
 
-  <x-card class="mb-4 text-sm">
-    <form id="filtering-form" action="{{route('jobs.index')}}" method="GET">
+  <x-card class="mb-4 text-sm" x-data="">
+    <form x-ref="filters" id="filtering-form" action="{{route('jobs.index')}}" method="GET">
       <div class="mb-4 grid grid-cols-2 gap-4">
         <div>
           <div class="mb-1 font-semibold">Search</div>
-          <x-text-input name="search" value="{{request('search')}}" placeholder="Search for any text" form-id="filtering-form" />
+          <x-text-input name="search" value="{{request('search')}}" placeholder="Search for any text" form-ref="filters" />
         </div>
         <div>
           <div class="mb-1 font-semibold">Salary</div>
           <div class="flex space-x-2">
-            <x-text-input name="min_salary" value="{{request('min_salary')}}" placeholder="From" form-id="filtering-form" />
-            <x-text-input name="max_salary" value="{{request('max_salary')}}" placeholder="To" form-id="filtering-form" />
+            <x-text-input name="min_salary" value="{{request('min_salary')}}" placeholder="From" form-ref="filters" />
+            <x-text-input name="max_salary" value="{{request('max_salary')}}" placeholder="To" form-ref="filters" />
           </div>
         </div>
         <div>
@@ -24,9 +24,11 @@
           <x-radio-group name="category" :options="\App\Models\Job::$category" />
         </div>
       </div>
-      <div class="flex">
-        <button class="w-full">Filter</button>
-        <a class="w-full" href="{{route('jobs.index')}}">Reset</a>
+      <div class="flex gap-5 content-between">
+        <x-button class="w-full bg-blue-600 text-white hover:bg-blue-600 text-white">Filter</x-button>
+        @if(request()->query())
+        <x-link-button class="w-full bg-red-600 text-white hover:bg-red-600 text-white" href="{{route('jobs.index')}}">Reset</x-link-button>
+        @endif
       </div>
 
     </form>
