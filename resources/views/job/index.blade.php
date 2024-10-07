@@ -25,9 +25,9 @@
         </div>
       </div>
       <div class="flex gap-5 content-between">
-        <x-button class="w-full bg-blue-600 text-white hover:bg-blue-600 text-white">Filter</x-button>
+        <x-button class="w-full">Filter</x-button>
         @if(request()->query())
-        <x-link-button class="w-full bg-red-600 text-white hover:bg-red-600 text-white" href="{{route('jobs.index')}}">Reset</x-link-button>
+          <x-link-button class="w-full" href="{{route('jobs.index')}}">Reset</x-link-button>
         @endif
       </div>
 
