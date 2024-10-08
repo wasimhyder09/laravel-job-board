@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,10 @@ class AuthController extends Controller {
       return redirect()->back()->with('error', 'Invalid Credentials');
     }
   }
-  public function destroy(string $id) {
-    //
+  public function destroy() {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
   }
 }
