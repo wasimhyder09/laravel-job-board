@@ -1,6 +1,6 @@
 <x-layout>
   <x-breadcrumbs
-  :links="['My Job Applications' => '#']"/>
+  :links="['My Job Applications' => '#']" class="mb-4"/>
 
   @forelse($applications as $application)
     <x-job-card :job="$application->job">
