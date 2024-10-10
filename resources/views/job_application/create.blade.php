@@ -1,5 +1,5 @@
 <x-layout>
-  <x-breadcrumbs :links="['Jobs' => route('jobs.index'), $job->title => route('jobs.show', $job), 'Apply' => '#']" class="mb-4" />
+  <x-breadcrumbs :links="['Jobs' => route('jobs.index'), $job->title => route('jobs.show', $job), 'Apply' => '#']" />
   <x-job-card :$job />
   <x-card>
     <h2 class="mb-4 text-lg font-medium">

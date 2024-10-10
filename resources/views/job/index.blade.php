@@ -1,5 +1,5 @@
 <x-layout>
-  <x-breadcrumbs :links="['Jobs' => route('jobs.index')]" class="mb-4"/>
+  <x-breadcrumbs :links="['Jobs' => route('jobs.index')]" />
 
   <x-card class="mb-4 text-sm" x-data="">
     <form x-ref="filters" id="filtering-form" action="{{route('jobs.index')}}" method="GET">
@@ -17,7 +17,9 @@
         </div>
         <div>
           <div class="mb-1 font-semibold">Experience</div>
-          <x-radio-group name="experience" :options="array_combine(array_map('ucfirst', \App\Models\Job::$experience), \App\Models\Job::$experience)" />
+          <x-radio-group name="experience" :options="
+            array_combine(array_map('ucfirst', \App\Models\Job::$experience), \App\Models\Job::$experience)"
+          />
         </div>
         <div>
           <div class="mb-1 font-semibold">Category</div>
@@ -25,9 +27,9 @@
         </div>
       </div>
       <div class="flex gap-5 content-between">
-        <x-button class="w-full bg-blue-600 text-white hover:bg-blue-500 text-white">Filter</x-button>
+        <x-button class="w-full bg-blue-600 hover:bg-blue-500 text-white">Filter</x-button>
         @if(request()->query())
-          <x-link-button class="w-full bg-red-600 text-white hover:bg-red-500 text-white" href="{{route('jobs.index')}}">Reset</x-link-button>
+          <x-link-button class="w-full bg-red-600 hover:bg-red-500 text-white" href="{{route('jobs.index')}}">Reset</x-link-button>
         @endif
       </div>
 

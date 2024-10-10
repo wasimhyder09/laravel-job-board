@@ -10,7 +10,7 @@
   <nav class="mb-8 flex justify-between text-lg font-medium">
     <ul class="flex space-x-2">
       <li>
-        <a href="route{{route('jobs.index')}}">Home</a>
+        <a href="{{route('jobs.index')}}">Home</a>
       </li>
     </ul>
     <ul class="flex space-x-2">
