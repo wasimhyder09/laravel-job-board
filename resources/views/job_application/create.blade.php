@@ -12,7 +12,7 @@
         <x-text-input type="number" name="expected_salary" />
       </div>
       <div class="mb-4">
-        <label for="cv" class="mb-2 block text-sm font-medium text-slate-900"></label>
+        <label for="cv" class="mb-2 block text-sm font-medium text-slate-900">Upload CV</label>
         <x-text-input type="file" name="cv" />
       </div>
       <x-button class="w-full bg-blue-600 hover:bg-blue-500 text-white">Apply</x-button>
