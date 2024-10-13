@@ -15,7 +15,7 @@
         <x-label for="cv" :required="true">Upload CV</x-label>
         <x-text-input type="file" name="cv" />
       </div>
-      <x-button class="w-full bg-blue-600 hover:bg-blue-500 text-white">Apply</x-button>
+      <x-button class="w-full bg-blue-600 hover:bg-blue-500">Apply</x-button>
     </form>
   </x-card>
 </x-layout>
