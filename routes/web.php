@@ -6,7 +6,9 @@ use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\MyJobApplicationController;
 use App\Http\Controllers\MyJobController;
+use App\Models\JobApplication;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('', fn() => to_route('jobs.index'));
 
@@ -23,4 +25,11 @@ Route::middleware('auth')->group(function () {
   Route::resource('my-job-applications', MyJobApplicationController::class)->only('index', 'destroy');
   Route::resource('employer', EmployerController::class)->only('create', 'store');
   Route::middleware('employer')->resource('my-jobs', MyJobController::class);
+  Route::middleware('employer')->get('/download-cv/{id}', function ($id) {
+    $application = JobApplication::findOrFail($id);
+    if (Storage::disk('private')->exists($application->cv_path)) {
+      return Storage::disk('private')->download($application->cv_path);
+    }
+    abort(404);
+  })->name('download.cv');
 });

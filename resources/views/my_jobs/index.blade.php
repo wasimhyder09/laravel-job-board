@@ -14,7 +14,7 @@
                 Applied {{$application->created_at->diffForHumans()}}
               </div>
               <div>
-                Download CV
+                <a href="{{ route('download.cv', ['id' => $application->id]) }}">Download CV</a>
               </div>
             </div>
             <div>
