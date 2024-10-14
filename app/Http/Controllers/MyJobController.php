@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobRequest;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
@@ -21,17 +22,8 @@ class MyJobController extends Controller {
     return view('my_jobs.create');
   }
 
-  public function store(Request $request) {
-    $validatedData = $request->validate([
-      'title' => 'required|max:255|string',
-      'location' => 'required|max:255|string',
-      'salary' => 'required|min:0000|numeric',
-      'description' => 'required|string',
-      'experience' => 'required|in:'.implode(',', Job::$experience),
-      'category' => 'required|in:'.implode(',', Job::$category),
-    ]);
-
-    auth()->user()->employer->jobs()->create($validatedData);
+  public function store(JobRequest $request) {
+    auth()->user()->employer->jobs()->create($request->validated());
     return redirect()->route('my-jobs.index')
       ->with('success', 'Job created successfully.');
   }
@@ -40,12 +32,13 @@ class MyJobController extends Controller {
     //
   }
 
-  public function edit(string $id) {
-    //
+  public function edit(Job $myJob) {
+    return view('my_jobs.edit', ['job' => $myJob]);
   }
 
-  public function update(Request $request, string $id) {
-    //
+  public function update(JobRequest $request, Job $myJob) {
+    $myJob->update($request->validated());
+    return redirect()->route('my-jobs.index')->with('success', 'Job updated successfully.');
   }
 
   public function destroy(string $id) {
