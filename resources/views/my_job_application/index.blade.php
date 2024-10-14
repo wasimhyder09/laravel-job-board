@@ -23,7 +23,7 @@
           <form action="{{route('my-job-applications.destroy', $application)}}" method="POST">
             @csrf
             @method('delete')
-            <x-button class="bg-red-500 hover:bg-red-400 text-white">Cancel</x-button>
+            <x-button>Cancel</x-button>
           </form>
         </div>
       </div>

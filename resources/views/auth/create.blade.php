@@ -23,7 +23,7 @@
           <a href="#" class="text-indigo-600 hover:underline">Forgot password?</a>
         </div>
       </div>
-      <x-button class="w-full bg-green-400 text-white hover:bg-green-300">Login</x-button>
+      <x-button class="w-full">Login</x-button>
     </form>
   </x-card>
 </x-layout>
