@@ -36,13 +36,18 @@
     </form>
   </x-card>
 
-  @foreach($jobs as $job)
-    <x-job-card :job="$job">
-      <div>
-        <x-link-button :href="route('jobs.show', $job)">
-          Show
-        </x-link-button>
-      </div>
-    </x-job-card>
-  @endforeach
+  @forelse($jobs as $job)
+    @foreach($jobs as $job)
+      <x-job-card :job="$job">
+        <div>
+          <x-link-button :href="route('jobs.show', $job)">
+            Show
+          </x-link-button>
+        </div>
+      </x-job-card>
+    @endforeach
+  @empty
+    <x-card class="text-center">No jobs found!</x-card>
+  @endforelse
+
 </x-layout>
