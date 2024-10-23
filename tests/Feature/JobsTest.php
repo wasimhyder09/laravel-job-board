@@ -41,7 +41,7 @@ class JobsTest extends TestCase {
   }
 
   public function test_create_job_successful(): void {
-    $product = [
+    $job = [
       'title' => 'Test Job',
       'location' => 'Lahore',
       'salary' => '90000',
@@ -49,11 +49,14 @@ class JobsTest extends TestCase {
       'experience' => 'senior',
       'category' => 'Sales',
     ];
-    $response = $this->actingAs($this->adminUser())->post('/my-jobs', $product);
+    $response = $this->actingAs($this->adminUser())->post('/my-jobs', $job);
     $response->assertStatus(302);
     $response->assertRedirect('/my-jobs');
 
-    $this->assertDatabaseHas('jobs', $product);
+    $this->assertDatabaseHas('jobs', $job);
+
+    $lastJob = Job::latest()->first();
+    $this->assertEquals($job['title'], $lastJob->title);
   }
 
   private function adminUser(): User {
