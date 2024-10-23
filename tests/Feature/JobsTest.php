@@ -59,6 +59,15 @@ class JobsTest extends TestCase {
     $this->assertEquals($job['title'], $lastJob->title);
   }
 
+//  public function test_job_update_contains_correct_values(): void {
+//    $job = Job::factory()->create(['employer_id' => $this->adminUser()->id]);
+//    $response = $this->actingAs($this->adminUser())->get('/my-jobs/' . $job->id . '/edit');
+//
+//    $response->assertStatus(200);
+//    $response->assertSee('value="' . $job->title . '"', false);
+//    $response->assertSee('value="' . $job->salary . '"', false);
+//  }
+
   private function adminUser(): User {
     return User::findOrFail(1);
   }
