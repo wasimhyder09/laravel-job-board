@@ -35,9 +35,29 @@ class JobsTest extends TestCase {
   }
 
   public function test_user_has_access_to_page() : void {
-    $user = User::findOrFail(1);
+    $user = $this->adminUser();
     $response = $this->actingAs($user)->get('/my-jobs');
     $response->assertStatus(200);
+  }
+
+  public function test_create_job_successful(): void {
+    $product = [
+      'title' => 'Test Job',
+      'location' => 'Lahore',
+      'salary' => '90000',
+      'description' => 'short description',
+      'experience' => 'senior',
+      'category' => 'Sales',
+    ];
+    $response = $this->actingAs($this->adminUser())->post('/my-jobs', $product);
+    $response->assertStatus(302);
+    $response->assertRedirect('/my-jobs');
+
+    $this->assertDatabaseHas('jobs', $product);
+  }
+
+  private function adminUser(): User {
+    return User::findOrFail(1);
   }
 
 }
